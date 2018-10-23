@@ -24,16 +24,6 @@ typedef struct instruction {
 
 /*
 
-	Information :
-	Simple virtual machine (C version) by Dylan Moore - 23/10/18
-	My 17th birthday was yesterday, this is my reverse gift.
-	The virtual machine has 8 general purpose registers (0-7)
-	I will probably use this in a interpreter at one point.
-
-	Example program :
-	I have wrote a example program, you can find it in the main procedure.
-	It prints out however many terms the fibonacci sequence that you pick.
-
 	Instructions :
 	The expected parameter is in the brackets after the description of the instruction.
 
