@@ -1,51 +1,67 @@
-idouinp		1	// input double 			(=register)
-iwstrin		2	// input wstr	 			(=register)
-idouread	3	// read double				(=register, double)
-iwstrread	4	// read wstr				(=register, wstr)
-iadd		5	// add registers			(=register, register, register)
-isub		6	// subtract registers		(=register, register, register)
-idiv		7	// divide registers			(=register, register, register)
-imul		8	// multiply register		(=register, register, register)
-isin		9	// compute sin				(=register, register)
-iasin		10	// compute asin				(=register, register)
-icos		11	// compute cos				(=register, register)
-iacos		12	// compute acos				(=register, register)
-itan		13	// compute tan				(=register, register)
-iatan		14	// compute atan				(=register, register)
-iatan2		15	// compute atan2			(=register, register, register)
-iexp		16	// compute exp				(=register, register)
-iexp2		17	// compute exp2				(=register, register)
-iexp10		18	// compute exp10			(=register, register)
-ilog		19	// compute log				(=register, register)
-ilog2		20	// compute log2				(=register, register)
-ilog10		21	// compute log10			(=register, register)
-ifabs		22	// compute fabs				(=register, register)
-ipow		23	// compute power			(=register, register, register)
-iceil		24	// compute ceil				(=register, register)
-ifloor		25	// compute floor			(=register, register)
-ifmod		26	// compute fmod				(=register, register)
-isqrt		27	// compute sqrt				(=register, register)
-ihypot		28	// compute hypot			(=register, register)
-iacosh		29	// compute acosh			(=register, register)
-iasinh		30	// compute asinh			(=register, register)
-iatanh		31	// compute atanh			(=register, register)
-icosh		32	// compute cosh				(=register, register)
-isinh		33	// compute sinh				(=register, register)
-itanh		34	// compute tanh				(=register, register)
-isyspush	35	// push onto syscall stack  (register)
-isyscall	36	// execute syscall			(=register, register) (push params onto syscall stack)
-icmp		37	// compare registers		(register, register) (uses cmp stack)
-icstruct	38	// creates memory struct	(=register, register)
-iwstruct	39	// writes to memory struct	(register, register)
-irstruct	40	// reads from memory struct	(=register, register, register)
-ixchg		41	// exchange registers		(register, register)
-iinc		42	// increment register		(register)
-idec		43	// decrement register		(register)
-iout		44	// output register			(register)
-ijmp		45	// unconditional jump		(address) (uses cmp stack)
-ijlt		46	// jump less than			(address) (uses cmp stack)
-ijet		47	// jump equal to			(address) (uses cmp stack)
-ijmt		48	// jump more than			(address) (uses cmp stack)
-ihlt		49	// halt						(exit code)
-inop		50	// no operation
-iret		51	// return					(uses return stack)
+// Instructions are two bytes long
+// First byte is instruction category, second is identifier
+
+#define stack	0
+#define 	ipop		0	// pops top item off stack
+#define 	iswap		1	// swap top stack items
+#define 	iout		2	// output top stack item
+#define input			1	
+#define 	idouinp		0	// input double		
+#define 	iwstrin		1	// input wstr
+#define read	2
+#define 	idouread	0	// read double		(double)
+#define 	iwstrread	1	// read wstr		(wstr)
+#define var				3
+#define		iregloc		0	// creates regular local
+#define		iregglo		1	// creates regular global
+#define 	istlocal	2	// stores item into local
+#define 	istglobal	3	// stores item into global
+#define 	irelocal	4	// reads local
+#define 	ireglobal	5	// reads global
+#define math	4
+#define 	iadd		0	// add
+#define 	isub		1	// subtract
+#define 	idiv		2	// divide
+#define 	imul		3	// multiply
+#define 	isin		4	// compute sin
+#define 	iasin		5	// compute asin
+#define 	icos		6	// compute cos
+#define 	iacos		7	// compute acos
+#define 	itan		8	// compute tan
+#define 	iatan		9	// compute atan
+#define 	iatan2		10	// compute atan2
+#define 	iexp		11	// compute exp
+#define 	iexp2		12	// compute exp2
+#define 	iexp10		13	// compute exp10
+#define 	ilog		14	// compute log
+#define 	ilog2		15	// compute log2
+#define 	ilog10		16	// compute log10
+#define 	ifabs		17	// compute fabs
+#define 	ipow		18	// compute power
+#define 	iceil		19	// compute ceil
+#define 	ifloor		20	// compute floor
+#define 	ifmod		21	// compute fmod
+#define 	isqrt		22	// compute sqrt
+#define 	ihypot		23	// compute hypot
+#define 	iacosh		24	// compute acosh
+#define 	iasinh		25	// compute asinh
+#define 	iatanh		26	// compute atanh
+#define 	icosh		27	// compute cosh
+#define 	isinh		28	// compute sinh
+#define 	itanh		29	// compute tanh
+#define sys		5
+#define 	isyspush	0	// push onto syscall stack
+#define 	isyscall	1	// execute syscall
+#define 	icstruct	2	// creates memory struct	
+#define 	iwstruct	3	// writes to memory struct
+#define 	irstruct	4	// reads from memory struct
+#define jump	6
+#define 	call		0	// call (with return support)
+#define 	iret		1	// return
+#define 	ijmp		2	// unconditional jump
+#define 	ijlt		3	// jump less than
+#define 	ijet		4	// jump equal to
+#define 	ijmt		5	// jump more than
+#define util	7
+#define 	ihlt		0	// halt
+#define 	inop		1	// no operation
